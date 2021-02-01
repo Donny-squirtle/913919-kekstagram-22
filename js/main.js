@@ -1,14 +1,13 @@
 const getRandomNumber = function (firstValue, secondValue) {
-  if (firstValue < 0, secondValue < 0, firstValue >= secondValue) {
-    return console.log('Enter other values');
-  }
-  return (Math.floor((Math.random() * firstValue) + secondValue));
+  let randomNumber = (Math.floor((Math.random() * (secondValue - firstValue)) + firstValue));
+  let result = (randomNumber > firstValue) ? randomNumber : firstValue;
+  return result;
 }
-window.console.log(getRandomNumber(10, 10));
+window.console.log(getRandomNumber(21, 18));
 const maxStringLength = function name(sampleLength, maxLength) {
   if (sampleLength.length > maxLength) {
-    console.log('Incorrect line lendth');
+    return false;
   }
-  console.log(sampleLength);
+  return true;
 }
-window.console.log(maxStringLength('Результат: true, если строка проходит по длине, и false — если не проходит', 1000));
+window.console.log(maxStringLength('Результат: true, если строка проходит по длине, и false — если не проходит', 10));
