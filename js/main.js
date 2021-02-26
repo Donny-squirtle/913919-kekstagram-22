@@ -16,7 +16,7 @@ const uniqNumbers = [];
 const getRandUniqNumbers = function () {
   let isUniq = false;
   while (isUniq == false) {
-    const rand = getRandomNumber(1, 26);
+    const rand = getRandomNumber(1, 1000);
     if (!uniqNumbers.includes(rand)) {
       uniqNumbers.push(rand);
       isUniq = true;
@@ -31,25 +31,37 @@ const names = ['Иван', 'Шерлок', 'Яков', 'Макар',
   'Степан', 'Оскар', 'Ярослав', 'Яков', 'Чарльз',
   'Тит', 'Чарльз', 'Камиль', 'Эрик', 'Даниил', 'Адам'];
 
-const userInformation = function () {
-  return {
-    id: getRandUniqNumbers(),
-    url: 'photos/' + getRandomNumber(1, 25) + '.jpg',
-    description: 'Lol',
-    likes: getRandomNumber(15, 200),
-    commens: {
-      id: getRandomNumber(1, 25),
-      avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
-      message: '**',
-      name: names[getRandomNumber(1, 25)],
-    },
+// const getUserInformation = function () {
+//   return {
+//     id: i,
+//     url: 'photos/' + i + '.jpg',
+//     description: 'Lol',
+//     likes: getRandomNumber(15, 200),
+//     commens: {
+//       id: getRandUniqNumbers(),
+//       avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
+//       message: '**',
+//       name: names[getRandomNumber(1, 25)],
+//     },
+//   }
+// };
+const getPhotosData = () => {
+  const arr = [];
+  const maxUsers = 25;
+  for (let i = 1; i <= maxUsers; i++) {
+    arr.push({
+      id: i,
+      url: 'photos/' + i + '.jpg',
+      description: 'Lol',
+      likes: getRandomNumber(15, 200),
+      commens: {
+        id: getRandUniqNumbers(),
+        avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
+        message: '**',
+        name: names[getRandomNumber(1, 25)],
+      },
+    });
   }
-};
-
-const arr = [];
-for (let i = 1; i <= 25; i++) {
-  const m = new userInformation();
-  arr.push(m);
+  return arr;
 }
-
-window.console.log(arr)
+window.console.log(getPhotosData());
