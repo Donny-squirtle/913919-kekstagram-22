@@ -10,7 +10,7 @@ const maxStringLength = function name(sampleLength, maxLength) {
   }
   return true;
 }
-
+maxStringLength('asdasdasdasd', 10);
 const getRandUniqNumbers = function () {
   const uniqNumbers = [];
   let isUniq = false;
