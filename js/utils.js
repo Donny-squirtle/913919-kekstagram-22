@@ -17,6 +17,15 @@ const getRandUniqNumbers = function () {
   return uniqNumbers[uniqNumbers.length - 1];
 }
 
+const maxStringLength = function (sampleLength, maxLength) {
+  if (sampleLength.length > maxLength) {
+    return false;
+  }
+  return true;
+}
+
+export { maxStringLength };
+
 export { getRandomNumber };
 
 export { getRandUniqNumbers };

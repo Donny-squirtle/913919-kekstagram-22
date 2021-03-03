@@ -1,5 +1,10 @@
-import { getRandUniqNumbers, getRandomNumber } from './random.js';
-import { names } from './user-names.js';
+import { getRandUniqNumbers, getRandomNumber } from './utiles.js';
+
+const names = ['Иван', 'Шерлок', 'Яков', 'Макар',
+  'Доминик', 'Ян', 'Шарль', 'Леонард', 'Феликс',
+  'Олег', 'Донат', 'Карен', 'Юрий', 'Вячеслав',
+  'Степан', 'Оскар', 'Ярослав', 'Яков', 'Чарльз',
+  'Тит', 'Чарльз', 'Камиль', 'Эрик', 'Даниил', 'Адам'];
 
 const getUserInformation = (index) => {
   return {
