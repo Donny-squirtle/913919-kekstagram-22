@@ -1,4 +1,4 @@
-import { getRandUniqNumbers, getRandomNumber } from './utiles.js';
+import { getRandUniqNumbers, getRandomNumber } from './utils.js';
 
 const names = ['Иван', 'Шерлок', 'Яков', 'Макар',
   'Доминик', 'Ян', 'Шарль', 'Леонард', 'Феликс',
@@ -12,7 +12,7 @@ const getUserInformation = (index) => {
     url: 'photos/' + index + '.jpg',
     description: 'Lol',
     likes: getRandomNumber(15, 200),
-    commens: {
+    comments: {
       id: getRandUniqNumbers(),
       avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
       message: '**',
@@ -22,8 +22,8 @@ const getUserInformation = (index) => {
 };
 
 const getPhotosData = () => {
-  const arr = [];
   const MAX_USERS = 25;
+  const arr = [];
   for (let i = 1; i <= MAX_USERS; i++) {
     arr.push(getUserInformation(i));
   }

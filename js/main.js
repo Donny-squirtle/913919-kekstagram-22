@@ -1,6 +1,4 @@
 import './utils.js';
-import { getPhotosData } from './users.js';
-import './user-names.js';
-import './comment-length.js';
+import './users.js';
+import './picture.js';
 
-window.console.log(getPhotosData());
