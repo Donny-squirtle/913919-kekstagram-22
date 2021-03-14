@@ -4,7 +4,7 @@ const pageBigPictureClose = document.querySelector('.big-picture__cancel');
 const popupCommentsCount = document.querySelector('.social__comment-count');
 const popupCommentsLoad = document.querySelector('.comments-loader');
 const pageBody = document.querySelector('body');
-const pictures = document.querySelector('.pictures');
+const pictures = document.querySelectorAll('.picture');
 
 const onPicturesClick = (evt) => {
   const pictureId = evt.target.parentElement.id;
@@ -43,4 +43,6 @@ const closePopup = () => {
 
 pageBigPictureClose.addEventListener('click', onCloseBtnClick);
 
-pictures.addEventListener('click', onPicturesClick);
+pictures.forEach((picture) => {
+  picture.addEventListener('click', onPicturesClick);
+});

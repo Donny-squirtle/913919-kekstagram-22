@@ -5,8 +5,8 @@ const allUserPicture = document.querySelector('.pictures');
 const picture = document.querySelector('#picture');
 const fragment = document.createDocumentFragment();
 
-const renderUsersPictures = () => {
-  dataPictures.forEach((user) => {
+const renderUsersPictures = (data) => {
+  data.forEach((user) => {
     const userPicture = picture.content.cloneNode(true);
     userPicture.querySelector('.picture__img').setAttribute('src', user.url);
     userPicture.querySelector('.picture__comments').textContent = user.comments.message;
@@ -16,4 +16,4 @@ const renderUsersPictures = () => {
   });
   allUserPicture.appendChild(fragment);
 }
-renderUsersPictures();
+renderUsersPictures(dataPictures);
