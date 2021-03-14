@@ -3,6 +3,7 @@ import { dataPictures } from './users.js';
 
 const allUserPicture = document.querySelector('.pictures');
 const picture = document.querySelector('#picture');
+const fragment = document.createDocumentFragment();
 
 const renderUsersPictures = () => {
   dataPictures.forEach((user) => {
@@ -11,7 +12,8 @@ const renderUsersPictures = () => {
     userPicture.querySelector('.picture__comments').textContent = user.comments.message;
     userPicture.querySelector('.picture__likes').textContent = user.likes;
     userPicture.querySelector('.picture').setAttribute('id', user.id);
-    allUserPicture.appendChild(userPicture);
+    fragment.appendChild(userPicture);
   });
+  allUserPicture.appendChild(fragment);
 }
 renderUsersPictures();
