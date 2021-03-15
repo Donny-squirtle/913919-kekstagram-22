@@ -7,10 +7,12 @@ const pageBody = document.querySelector('body');
 const pictures = document.querySelector('.pictures');
 
 const onPicturesClick = (evt) => {
-  const pictureId = evt.target.parentElement.id;
-  const pictureObject = dataPictures.find(picture => picture.id === +pictureId);
-  showBigPicture(pictureObject.url, pictureObject.likes, pictureObject.description, pictureObject.comments.message, pictureObject.comments.avatar, pictureObject.comments.name);
-  showPopup();
+  if (!evt.target.closest('picture')) {
+    const pictureId = evt.target.parentElement.id;
+    const pictureObject = dataPictures.find(picture => picture.id === +pictureId);
+    showBigPicture(pictureObject.url, pictureObject.likes, pictureObject.description, pictureObject.comments.message, pictureObject.comments.avatar, pictureObject.comments.name);
+    showPopup();
+  }
 };
 
 const onCloseBtnClick = () => {
@@ -43,8 +45,4 @@ const closePopup = () => {
 
 pageBigPictureClose.addEventListener('click', onCloseBtnClick);
 
-pictures.addEventListener('click', function (evt) {
-  if (evt.target.parentElement.className === 'picture') {
-    onPicturesClick(evt);
-  }
-});
+pictures.addEventListener('click', onPicturesClick);
