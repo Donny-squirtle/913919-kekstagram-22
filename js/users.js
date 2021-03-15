@@ -29,6 +29,7 @@ const getPhotosData = () => {
   }
   return arr;
 }
-
+const dataPictures = getPhotosData();
+export { dataPictures };
 export { getUserInformation };
 export { getPhotosData };
