@@ -7,7 +7,7 @@ const pageBody = document.querySelector('body');
 const pictures = document.querySelector('.pictures');
 
 const onPicturesClick = (evt) => {
-  if (!evt.target.closest('picture')) {
+  if (evt.target.closest('.picture')) {
     const pictureId = evt.target.parentElement.id;
     const pictureObject = dataPictures.find(picture => picture.id === +pictureId);
     showBigPicture(pictureObject.url, pictureObject.likes, pictureObject.description, pictureObject.comments.message, pictureObject.comments.avatar, pictureObject.comments.name);
