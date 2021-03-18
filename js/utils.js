@@ -24,6 +24,12 @@ const maxStringLength = function (sampleLength, maxLength) {
   return true;
 }
 
+const isEscEvent = (evt) => {
+  return evt.key === 'Escape' || evt.key === 'Esc';
+};
+
+export { isEscEvent };
+
 export { maxStringLength };
 
 export { getRandomNumber };

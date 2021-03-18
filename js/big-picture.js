@@ -1,4 +1,6 @@
 import { dataPictures } from './users.js';
+import { isEscEvent } from './utils.js';
+
 const pageBigPicture = document.querySelector('.big-picture');
 const pageBigPictureClose = document.querySelector('.big-picture__cancel');
 const popupCommentsCount = document.querySelector('.social__comment-count');
@@ -29,11 +31,19 @@ const showBigPicture = (pictureImage, pictureLikes, pictureDescription, textComm
   bigPicture.querySelector('.social__comment .social__picture').setAttribute('alt', userName);
 }
 
+const onPopupEscKeydown = (evt) => {
+  if (isEscEvent(evt)) {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
 const showPopup = () => {
   popupCommentsCount.classList.add('hidden');
   popupCommentsLoad.classList.add('hidden');
   pageBody.classList.add('modal-open');
   pageBigPicture.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscKeydown);
 }
 
 const closePopup = () => {
