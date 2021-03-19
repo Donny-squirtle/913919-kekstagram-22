@@ -15,7 +15,7 @@ imgUploadEffectsLevel.classList.add('visually-hidden');
 
 const imageEffects = {
   none: () => {
-    imgUploadEffectsLevel.classList.remove('visually-hidden');
+    imgUploadEffectsLevel.classList.add('visually-hidden')
     return 'none';
   },
   chrome: () => {
@@ -39,23 +39,23 @@ const imageEffects = {
     return `brightness(${(parseInt(effectLevelValue.value, 10) * 3) * 0.01})`;
   },
 }
+
 let endClass = '';
+
 const useEffect = (evt) => {
   if (evt.target.classList.contains('effects__preview')) {
-    if (endClass != '') {
+    if (endClass !== '') {
       uploadPreviewImg.classList.remove(endClass);
     }
     effectLevelSlider.noUiSlider.set(100);
-
     let currentClass = evt.target.classList[1];
-
     endClass = currentClass;
     uploadPreviewImg.classList.add(currentClass);
     uploadPreviewImg.style.filter = imageEffects[currentClass.replace('effects__preview--', '')]();
   }
-}
+};
 
-imgUploadEffects.addEventListener('click', useEffect);
+imgUploadEffects.addEventListener('click', useEffect)
 
 window.noUiSlider.create(effectLevelSlider, {
   range: {
