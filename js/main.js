@@ -1,4 +1,4 @@
-import './nouislider.min.js'
+import '../nouislider/nouislider.js'
 import './utils.js';
 import './users.js';
 import './picture.js';
