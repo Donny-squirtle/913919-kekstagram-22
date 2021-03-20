@@ -70,3 +70,5 @@ effectLevelSlider.noUiSlider.on('change', () => {
 
   uploadPreviewImg.style.filter = imageEffects[endClass.replace('effects__preview--', '')]();
 });
+
+export { uploadPreviewImg };

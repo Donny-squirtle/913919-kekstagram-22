@@ -1,4 +1,5 @@
 import { isEscEvent } from './utils.js';
+import { uploadPreviewImg } from './filter_img.js';
 
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -42,6 +43,8 @@ const showEditWindow = () => {
 const colseEditWindow = () => {
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('.modal-open');
+  uploadPreviewImg.removeAttribute('class');
+  uploadPreviewImg.removeAttribute('style');
 }
 
 uploadFile.onchange = () => {
