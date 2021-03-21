@@ -1,10 +1,10 @@
-const getRandomNumber = function (firstValue, secondValue) {
+const getRandomNumber = (firstValue, secondValue) => {
   let randomNumber = (Math.floor((Math.random() * (secondValue - firstValue)) + firstValue));
   let result = (randomNumber > firstValue) ? randomNumber : firstValue;
   return result;
 }
 
-const getRandUniqNumbers = function () {
+const getRandUniqNumbers = () => {
   const uniqNumbers = [];
   let isUniq = false;
   while (isUniq == false) {
@@ -17,7 +17,7 @@ const getRandUniqNumbers = function () {
   return uniqNumbers[uniqNumbers.length - 1];
 }
 
-const maxStringLength = function (sampleLength, maxLength) {
+const maxStringLength = (sampleLength, maxLength) => {
   if (sampleLength.length > maxLength) {
     return false;
   }

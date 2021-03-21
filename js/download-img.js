@@ -1,5 +1,5 @@
 import { isEscEvent } from './utils.js';
-import { uploadPreviewImg } from './filter_img.js';
+import { textHashtag, textDescription } from './validation-form.js';
 
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -8,6 +8,8 @@ const uploadFile = document.querySelector('#upload-file');
 const scaleControlValue = document.querySelector('.scale__control--value');
 const imgUploadPreview = document.querySelector('.img-upload__preview').firstElementChild;
 const imgUploadScale = document.querySelector('.img-upload__scale');
+const uploadPreviewImg = document.querySelector('.img-upload__preview > img');
+
 const scaleValue = {
   imgScaleMin: 25,
   imgScaleMax: 100,
@@ -40,11 +42,20 @@ const showEditWindow = () => {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('.modal-open');
 }
+
+const resetImgScale = () => {
+  uploadPreviewImg.style = 'transform: scale(1.00)';
+  scaleControlValue.value = '100%';
+}
+
 const colseEditWindow = () => {
+  document.querySelector('.effects__preview').click();
   imgUploadOverlay.classList.add('hidden');
-  body.classList.remove('.modal-open');
-  uploadPreviewImg.removeAttribute('class');
-  uploadPreviewImg.removeAttribute('style');
+  body.classList.remove('modal-open');
+  uploadFile.value = '';
+  textHashtag.value = '';
+  textDescription.value = '';
+  resetImgScale();
 }
 
 uploadFile.onchange = () => {
