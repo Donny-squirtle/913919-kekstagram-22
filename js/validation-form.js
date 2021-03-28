@@ -3,6 +3,8 @@ import { isEscEvent } from './utils.js';
 const imgUploadModal = document.querySelector('.img-upload__overlay');
 const textDescription = imgUploadModal.querySelector('.text__description');
 const textHashtag = imgUploadModal.querySelector('.text__hashtags');
+const SYMBOLS = 20;
+const HASHTAG = 5;
 
 const validateTag = (hashtag) => {
   const regexp = /^#\w{1,19}$/;
@@ -17,7 +19,7 @@ const onFieldForRecording = (evt) => {
   }
 };
 
-const validateHashTags = (str) => {
+const validateTags = (str) => {
   if (str.trim().length === 0) {
     textHashtag.setCustomValidity('');
     return true;
@@ -28,46 +30,45 @@ const validateHashTags = (str) => {
     .split(' ')
     .filter((words) => words.length !== 0);
 
-  for (let i = 0; i < hashtag.length; i++) {
-    const tag = hashtag[i];
+  let validate = true;
 
+  hashtag.forEach((index) => {
+    const tag = index;
+
+    if (!validateTag(index)) {
+      textHashtag.setCustomValidity('Hashtag can only contain letters and numbers');
+      validate = false;
+    }
     if (!tag.startsWith('#')) {
       textHashtag.setCustomValidity('Hashtag must start with #');
-      return false;
+      validate = false;
     }
 
-    if (tag.length > 20) {
+    if (tag.length > SYMBOLS) {
       textHashtag.setCustomValidity('Maximum hashtag length 20 symbols(include #)');
-      return false;
+      validate = false;
     }
-
-    if (!validateTag(hashtag[i])) {
-      textHashtag.setCustomValidity(
-        'Hashtag can only contain letters and numbers',
-      );
-      return false;
-    }
-  }
-
+  });
+  ///////////////////////////
   if (hashtag.length !== new Set(hashtag).size) {
     textHashtag.setCustomValidity('Hashtags cannot be used twice');
-    return false;
+    validate = false;
   }
 
-  if (hashtag.length > 5) {
+  if (hashtag.length > HASHTAG) {
     textHashtag.setCustomValidity('You cant use more then five hashtags');
-    return false;
+    validate = false;
   }
 
-  textHashtag.setCustomValidity('');
-  return true;
+  validate && textHashtag.setCustomValidity('');
+  return validate;
 };
-
+//////////////////////////////////////////////////////////////////
 textHashtag.addEventListener('keydown', onFieldForRecording);
 textDescription.addEventListener('keydown', onFieldForRecording);
 
 textHashtag.addEventListener('input', () => {
-  if (!validateHashTags(textHashtag.value)) {
+  if (!validateTags(textHashtag.value)) {
     textHashtag.reportValidity();
   }
 });
