@@ -48,7 +48,7 @@ const resetImgScale = () => {
   scaleControlValue.value = '100%';
 }
 
-const colseEditWindow = () => {
+const closeEditWindow = () => {
   document.querySelector('.effects__preview').click();
   imgUploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -66,9 +66,8 @@ uploadFile.onchange = () => {
 const onPopupEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
     evt.preventDefault();
-    colseEditWindow();
+    closeEditWindow();
   }
 };
 
-uploadCancel.addEventListener('click', colseEditWindow);
-
+uploadCancel.addEventListener('click', closeEditWindow);

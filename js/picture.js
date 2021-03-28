@@ -1,19 +1,34 @@
-import { dataPictures } from './users.js';
-
+import { showBigPicture } from './big-picture.js';
 
 const allUserPicture = document.querySelector('.pictures');
-const picture = document.querySelector('#picture');
+const picture = document.querySelector('#picture').content;
 const fragment = document.createDocumentFragment();
+const pageBody = document.querySelector('body');
 
 const renderUsersPictures = (data) => {
-  data.forEach((user) => {
-    const userPicture = picture.content.cloneNode(true);
-    userPicture.querySelector('.picture__img').setAttribute('src', user.url);
-    userPicture.querySelector('.picture__comments').textContent = user.comments.message;
-    userPicture.querySelector('.picture__likes').textContent = user.likes;
-    userPicture.querySelector('.picture').setAttribute('id', user.id);
+  data.forEach(({ id, url, likes, comments }) => {
+    const userPicture = picture.cloneNode(true);
+
+    userPicture.querySelector('a').id = `image${id}`;
+    userPicture.querySelector('.picture__img').src = url;
+    userPicture.querySelector('.picture__likes').textContent = likes;
+    userPicture.querySelector('.picture__comments').textContent = comments.length;
     fragment.appendChild(userPicture);
   });
   allUserPicture.appendChild(fragment);
+
+  document.querySelector('.pictures').addEventListener('click', (evt) => {
+    const pictureElement = evt.target.closest('.picture');
+
+    if (pictureElement) {
+      const image = data.find(
+        (element) => `image${element.id}` === pictureElement.id,
+      );
+      showBigPicture(image);
+
+      pageBody.classList.add('modal-open');
+    }
+  });
 }
-renderUsersPictures(dataPictures);
+
+export { renderUsersPictures };
