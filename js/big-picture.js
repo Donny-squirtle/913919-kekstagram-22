@@ -11,6 +11,7 @@ const popupCommentsCount = bigPicture.querySelector('.social__comment-count');
 const closePopup = () => {
   bigPicture.classList.add('hidden');
   bodyOff.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPopupEscKeydown);
 };
 
 bigPictureClose.addEventListener('click', () => {
@@ -18,8 +19,8 @@ bigPictureClose.addEventListener('click', () => {
 });
 
 const onPopupEscKeydown = (evt) => {
+  evt.preventDefault();
   if (isEscEvent(evt)) {
-    evt.preventDefault();
     closePopup();
   }
 };
@@ -63,9 +64,9 @@ const showBigPicture = ({ url, likes, comments, description }) => {
   }
 }
 
-const showComments = (n) => {
+const showComments = (quantity) => {
   const hiddenComments = document.querySelectorAll('.social__comment.hidden');
-  const initialComments = Array.prototype.slice.call(hiddenComments).slice(0, n);
+  const initialComments = Array.prototype.slice.call(hiddenComments).slice(0, quantity);
 
   initialComments.forEach((comment) => {
     comment.classList.remove('hidden');

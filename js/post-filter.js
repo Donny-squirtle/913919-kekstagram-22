@@ -11,9 +11,9 @@ const setPictureFilter = (pictures) => {
   const imgFilters = document.querySelector('.img-filters');
   imgFilters.classList.remove('img-filters--inactive');
 
-  const filterDefault = document.querySelector('#filter-default');
-  const filterRandom = document.querySelector('#filter-random');
-  const filterDiscussed = document.querySelector('#filter-discussed');
+  const getFilterDefault = document.querySelector('#filter-default');
+  const getFilterRandom = document.querySelector('#filter-random');
+  const getFilterDiscussed = document.querySelector('#filter-discussed');
 
   const filtersForm = document.querySelector('.img-filters');
 
@@ -23,24 +23,22 @@ const setPictureFilter = (pictures) => {
     clearPictures();
     renderUsersPictures(renderedPicturesByDefaultCopy);
     clearActiveFilter();
-    filterDefault.classList.add(FILTER_BUTTON_ACTIVE);
+    getFilterDefault.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
   const randomFilter = () => {
     const sortRandomPictures = [];
     const uniqueNumbersArray = getArrayWithUniqueNumbers(pictures.length);
 
-    for (let i = 0; i < uniqueNumbersArray.length; i++) {
-      if (i < RANDOM_PICTURES_QUANTITY) {
-        let current = uniqueNumbersArray[i] - 1;
-        sortRandomPictures.push(renderedPicturesByDefaultCopy[current])
-      }
+    for (let i = 0; i < RANDOM_PICTURES_QUANTITY; i++) {
+      let current = uniqueNumbersArray[i] - 1;
+      sortRandomPictures.push(renderedPicturesByDefaultCopy[current])
     }
 
     clearPictures();
     renderUsersPictures(sortRandomPictures);
     clearActiveFilter();
-    filterRandom.classList.add(FILTER_BUTTON_ACTIVE);
+    getFilterRandom.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
   const discussedFilter = () => {
@@ -53,7 +51,7 @@ const setPictureFilter = (pictures) => {
     clearPictures();
     renderUsersPictures(sortByCommentsPictures);
     clearActiveFilter();
-    filterDiscussed.classList.add(FILTER_BUTTON_ACTIVE);
+    getFilterDiscussed.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
   const filterTypeAction = {

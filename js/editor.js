@@ -35,7 +35,6 @@ const onEditorEscKeydown = (evt) => {
   }
 };
 
-// Масштабирование изображения
 const controlBigger = uploadImgModal.querySelector('.scale__control--bigger');
 const controlSmaller = uploadImgModal.querySelector('.scale__control--smaller');
 const controlValue = uploadImgModal.querySelector('.scale__control--value');
@@ -76,7 +75,6 @@ controlSmaller.addEventListener('click', () => {
   uloadImagePreview.style.transform = 'scale(' + scale + ')';
 });
 
-//Отправка данных
 const imgUploadForm = document.querySelector('.img-upload__form');
 const setUserFormSubmit = () => {
   imgUploadForm.addEventListener('submit', (evt) => {

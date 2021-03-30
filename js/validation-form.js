@@ -86,7 +86,7 @@ const showMessage = (messageType) => {
 
   const fillMessage = () => {
     mainBlock.appendChild(messageType);
-    buttonClosePopup.addEventListener('click', closePopup);
+    buttonClosePopup.addEventListener('click', onButtonClosePopupClick);
     document.addEventListener('keydown', onPopupEscKeydown);
     mainBlock.addEventListener('click', onCloseClickOutside);
   };
@@ -94,20 +94,20 @@ const showMessage = (messageType) => {
   const onPopupEscKeydown = (evt) => {
     if (isEscEvent(evt)) {
       evt.preventDefault();
-      closePopup();
+      onButtonClosePopupClick();
     }
   };
 
-  const closePopup = () => {
+  const onButtonClosePopupClick = () => {
     mainBlock.removeChild(messageType);
     document.removeEventListener('keydown', onPopupEscKeydown);
     mainBlock.removeEventListener('click', onCloseClickOutside);
-    buttonClosePopup.removeEventListener('click', closePopup);
+    buttonClosePopup.removeEventListener('click', onButtonClosePopupClick);
   };
 
   const onCloseClickOutside = (evt) => {
-    if (evt.target === messageType.querySelector('div')) {
-      closePopup();
+    if (evt.target != messageType.querySelector('div')) {
+      onButtonClosePopupClick();
       return;
     }
   };
