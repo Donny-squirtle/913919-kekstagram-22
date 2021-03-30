@@ -15,16 +15,18 @@ const setPictureFilter = (pictures) => {
   const filterRandom = document.querySelector('#filter-random');
   const filterDiscussed = document.querySelector('#filter-discussed');
 
+  const filtersForm = document.querySelector('.img-filters');
+
   const renderedPicturesByDefaultCopy = Object.assign([], pictures);
 
-  const sortByDefault = () => {
+  const defaultFilter = () => {
     clearPictures();
     renderUsersPictures(renderedPicturesByDefaultCopy);
     clearActiveFilter();
     filterDefault.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
-  const sortByRandom = () => {
+  const randomFilter = () => {
     const sortRandomPictures = [];
     const uniqueNumbersArray = getArrayWithUniqueNumbers(pictures.length);
 
@@ -41,7 +43,7 @@ const setPictureFilter = (pictures) => {
     filterRandom.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
-  const sortByDiscussed = () => {
+  const discussedFilter = () => {
     const sortByCommentsPictures = Object.assign([], renderedPicturesByDefaultCopy);
 
     sortByCommentsPictures.sort(function (a, b) {
@@ -54,9 +56,17 @@ const setPictureFilter = (pictures) => {
     filterDiscussed.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
-  filterDefault.addEventListener('click', _.debounce(sortByDefault, BIDE), true);
-  filterRandom.addEventListener('click', _.debounce(sortByRandom, BIDE), true);
-  filterDiscussed.addEventListener('click', _.debounce(sortByDiscussed, BIDE), true);
+  const filterTypeAction = {
+    'filter-default': defaultFilter,
+    'filter-random': randomFilter,
+    'filter-discussed': discussedFilter,
+  };
+
+  const onFilterFormClick = (evt) => {
+    filterTypeAction[evt.target.id]();
+  }
+
+  filtersForm.addEventListener('click', _.debounce(onFilterFormClick, BIDE))
 
   const clearPictures = () => {
     const allPicturesList = document.querySelectorAll('.picture');
