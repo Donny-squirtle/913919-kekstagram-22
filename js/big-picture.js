@@ -1,7 +1,6 @@
 import { isEscEvent } from './utils.js';
 
 const COMMENTS = 5;
-
 const bigPicture = document.querySelector('.big-picture');
 const socialComment = bigPicture.querySelector('.social__comments');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
