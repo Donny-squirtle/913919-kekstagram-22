@@ -106,7 +106,7 @@ const showMessage = (messageType) => {
   };
 
   const onCloseClickOutside = (evt) => {
-    if (evt.target != messageType.querySelector('div')) {
+    if (evt.target !== messageType.querySelector('div')) {
       onButtonClosePopupClick();
       return;
     }
