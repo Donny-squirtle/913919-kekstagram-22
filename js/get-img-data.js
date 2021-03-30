@@ -1,16 +1,15 @@
-import { showErrorWindow } from './utils.js';
-
-const getPictureData = (load) => {
+import { showAlert } from './utils.js';
+const getPictureData = (onSuccess) => {
   fetch('https://22.javascript.pages.academy/kekstagram/data')
     .then((response) => {
       return response.json();
     })
     .then((posts) => {
-      load(posts);
+      onSuccess(posts);
     })
     .catch(() => {
-      showErrorWindow('Cant download pictures from server');
+      showAlert('Не удалось получить посты с сервера. Попробуйте ещё раз');
     });
 }
 
-export { getPictureData }
+export { getPictureData };
