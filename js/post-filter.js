@@ -1,3 +1,4 @@
+/* global _:readonly */
 import { renderUsersPictures } from './picture.js';
 
 import { getArrayWithUniqueNumbers } from './utils.js';
