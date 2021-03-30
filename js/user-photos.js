@@ -1,4 +1,4 @@
-import { showAlert } from './utils.js';
+import { showAlert } from './util.js';
 import { closeModal } from './editor.js';
 
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
@@ -7,7 +7,7 @@ const FILE_SIZE = 1000000;
 const fileUpload = document.querySelector('#upload-file');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
-const loadImage = () => {
+const loadUserPhoto = () => {
   fileUpload.addEventListener('change', () => {
     const imgFile = fileUpload.files[0];
     const imgFileName = imgFile.name.toLowerCase();
@@ -37,4 +37,4 @@ const loadImage = () => {
     }
   });
 };
-loadImage();
+loadUserPhoto();

@@ -1,45 +1,26 @@
-const getRandomNumber = (firstValue, secondValue) => {
-  let randomNumber = (Math.floor((Math.random() * (secondValue - firstValue)) + firstValue));
-  let result = (randomNumber > firstValue) ? randomNumber : firstValue;
-  return result;
-}
+const ALERT_SHOW_TIME = 5000;
 
-const getRandUniqNumbers = () => {
-  const uniqNumbers = [];
-  let isUniq = false;
-  while (isUniq == false) {
-    const rand = getRandomNumber(1, 1000);
-    if (!uniqNumbers.includes(rand)) {
-      uniqNumbers.push(rand);
-      isUniq = true;
-    }
+const getRandomNumber = (min, max) => {
+  if (min < 0 || max < 0) {
+    return Error('Arguments must be positive ("min" number can equal 0)');
   }
-  return uniqNumbers[uniqNumbers.length - 1];
-}
-
-const maxStringLength = (sampleLength, maxLength) => {
-  if (sampleLength.length > maxLength) {
-    return false;
+  if (min >= max) {
+    return Error('The "max" number must be greater than "min" number');
   }
-  return true;
-}
 
-const isEscEvent = (evt) => {
-  return evt.key === 'Escape' || evt.key === 'Esc';
+  return Math.floor(Math.random() * (Math.ceil(max) - Math.ceil(min) + 1)) + Math.ceil(min);
 };
-
-const ERROR_TIME = 1000000;
-const showErrorWindow = (message) => {
+const showAlert = (message) => {
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
   alertContainer.style.position = 'absolute';
   alertContainer.style.left = 0;
   alertContainer.style.top = 0;
   alertContainer.style.right = 0;
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = '#e62136';
 
   alertContainer.textContent = message;
 
@@ -47,15 +28,24 @@ const showErrorWindow = (message) => {
 
   setTimeout(() => {
     alertContainer.remove();
-  }, ERROR_TIME);
+  }, ALERT_SHOW_TIME);
 }
 
-export { showErrorWindow };
+const isEscEvent = (evt) => {
+  return evt.key === 'Escape' || evt.key === 'Esc';
+};
 
-export { isEscEvent };
+const getArrayWithUniqueNumbers = (quantity) => {
+  const numbers = [];
 
-export { maxStringLength };
+  while (numbers.length < quantity) {
+    const currentRandomInteger = getRandomNumber(1, quantity);
+    if (!numbers.includes(currentRandomInteger)) {
+      numbers.push(currentRandomInteger);
+    }
+  }
 
-export { getRandomNumber };
+  return numbers;
+};
 
-export { getRandUniqNumbers };
+export { showAlert, isEscEvent, getArrayWithUniqueNumbers };

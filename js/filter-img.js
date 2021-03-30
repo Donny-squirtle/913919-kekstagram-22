@@ -1,17 +1,16 @@
-const effectLevelSlider = document.querySelector('.effect-level__slider');
 const imgUploadEffects = document.querySelector('.img-upload__effects');
 const imgUploadEffectsLevel = document.querySelector('.img-upload__effect-level');
-const effectLevelValue = document.querySelector('.effect-level__value');
+const effectsLevelSlider = document.querySelector('.effect-level__slider');
 const uploadPreviewImg = document.querySelector('.img-upload__preview > img');
-
-const silderValue = {
-  MIN: 0,
+const effectLevelValue = document.querySelector('.effect-level__value');
+imgUploadEffectsLevel.classList.add('visually-hidden')
+let endClass = '';
+const sliderValue = {
   MAX: 100,
+  MIN: 0,
   STEP: 1,
-
 }
 
-imgUploadEffectsLevel.classList.add('visually-hidden');
 
 const imageEffects = {
   none: () => {
@@ -40,33 +39,34 @@ const imageEffects = {
   },
 }
 
-let endClass = '';
-
-const useEffect = (evt) => {
+const onEffectsGroup = (evt) => {
   if (evt.target.classList.contains('effects__preview')) {
     if (endClass !== '') {
       uploadPreviewImg.classList.remove(endClass);
     }
-    effectLevelSlider.noUiSlider.set(100);
+    effectsLevelSlider.noUiSlider.set(100);
     let currentClass = evt.target.classList[1];
     endClass = currentClass;
+
     uploadPreviewImg.classList.add(currentClass);
     uploadPreviewImg.style.filter = imageEffects[currentClass.replace('effects__preview--', '')]();
   }
 };
 
-imgUploadEffects.addEventListener('click', useEffect)
+imgUploadEffects.addEventListener('click', onEffectsGroup);
 
-window.noUiSlider.create(effectLevelSlider, {
-  range: {
-    'min': silderValue.MIN,
-    'max': silderValue.MAX,
-  },
-  start: silderValue.MAX,
+window.noUiSlider.create(effectsLevelSlider, {
+  start: sliderValue.MAX,
   connect: 'lower',
+  range: {
+    min: sliderValue.MIN,
+    max: sliderValue.MAX,
+  },
 });
-effectLevelSlider.noUiSlider.on('change', () => {
-  effectLevelValue.value = effectLevelSlider.noUiSlider.get();
+
+effectsLevelSlider.noUiSlider.on('change', () => {
+  effectLevelValue.value = effectsLevelSlider.noUiSlider.get();
 
   uploadPreviewImg.style.filter = imageEffects[endClass.replace('effects__preview--', '')]();
 });
+export { effectLevelValue, imgUploadEffectsLevel };

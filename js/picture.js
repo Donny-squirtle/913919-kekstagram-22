@@ -12,9 +12,11 @@ const renderUsersPictures = (data) => {
     userPicture.querySelector('a').id = `image${id}`;
     userPicture.querySelector('.picture__img').src = url;
     userPicture.querySelector('.picture__likes').textContent = likes;
-    userPicture.querySelector('.picture__comments').textContent = comments.length;
+    userPicture.querySelector('.picture__comments').textContent =
+      comments.length;
     fragment.appendChild(userPicture);
   });
+
   allUserPicture.appendChild(fragment);
 
   document.querySelector('.pictures').addEventListener('click', (evt) => {
@@ -29,6 +31,6 @@ const renderUsersPictures = (data) => {
       pageBody.classList.add('modal-open');
     }
   });
-}
+};
 
 export { renderUsersPictures };
