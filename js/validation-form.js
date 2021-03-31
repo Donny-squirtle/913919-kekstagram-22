@@ -123,4 +123,4 @@ const showSuccess = () => {
   showMessage(MessageType.SUCCESS);
 };
 
-export { showError, showSuccess, textHashtag, textDescription };
+export { showError, showSuccess, textHashtag, textDescription, validateHashtags };

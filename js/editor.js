@@ -1,4 +1,4 @@
-import { showError, showSuccess, textHashtag, textDescription } from './validation-form.js';
+import { showError, showSuccess, textHashtag, textDescription, validateHashtags } from './validation-form.js';
 import { isEscEvent } from './utils.js';
 
 const pageBody = document.querySelector('body');
@@ -81,21 +81,24 @@ const setUserFormSubmit = () => {
     evt.preventDefault();
 
     const formData = new FormData(evt.target);
-
-    fetch(
-      'https://22.javascript.pages.academy/kekstagram',
-      {
-        method: 'POST',
-        body: formData,
-      },
-    ).then((response) => {
-      closeModal();
-      if (response.ok) {
-        showSuccess();
-      } else {
-        showError();
-      }
-    });
+    if (!validateHashtags(textHashtag.value)) {
+      textHashtag.reportValidity();
+    } else {
+      fetch(
+        'https://22.javascript.pages.academy/kekstagram',
+        {
+          method: 'POST',
+          body: formData,
+        },
+      ).then((response) => {
+        closeModal();
+        if (response.ok) {
+          showSuccess();
+        } else {
+          showError();
+        }
+      });
+    }
   });
 };
 setUserFormSubmit();
