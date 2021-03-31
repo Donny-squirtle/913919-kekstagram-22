@@ -26,6 +26,9 @@ const renderUsersPictures = (data) => {
       const image = data.find(
         (element) => `image${element.id}` === pictureElement.id,
       );
+      if (image === undefined) {
+        return;
+      }
       showBigPicture(image);
 
       pageBody.classList.add('modal-open');

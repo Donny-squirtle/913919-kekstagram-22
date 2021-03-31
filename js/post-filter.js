@@ -11,22 +11,22 @@ const setPictureFilter = (pictures) => {
   const imgFilters = document.querySelector('.img-filters');
   imgFilters.classList.remove('img-filters--inactive');
 
-  const getFilterDefault = document.querySelector('#filter-default');
-  const getFilterRandom = document.querySelector('#filter-random');
-  const getFilterDiscussed = document.querySelector('#filter-discussed');
+  const filterDefault = document.querySelector('#filter-default');
+  const filterRandom = document.querySelector('#filter-random');
+  const filterDiscussed = document.querySelector('#filter-discussed');
 
   const filtersForm = document.querySelector('.img-filters');
 
   const renderedPicturesByDefaultCopy = Object.assign([], pictures);
 
-  const defaultFilter = () => {
+  const getDefaultFilter = () => {
     clearPictures();
     renderUsersPictures(renderedPicturesByDefaultCopy);
     clearActiveFilter();
-    getFilterDefault.classList.add(FILTER_BUTTON_ACTIVE);
+    filterDefault.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
-  const randomFilter = () => {
+  const getRandomFilter = () => {
     const sortRandomPictures = [];
     const uniqueNumbersArray = getArrayWithUniqueNumbers(pictures.length);
 
@@ -38,10 +38,10 @@ const setPictureFilter = (pictures) => {
     clearPictures();
     renderUsersPictures(sortRandomPictures);
     clearActiveFilter();
-    getFilterRandom.classList.add(FILTER_BUTTON_ACTIVE);
+    filterRandom.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
-  const discussedFilter = () => {
+  const getDiscussedFilter = () => {
     const sortByCommentsPictures = Object.assign([], renderedPicturesByDefaultCopy);
 
     sortByCommentsPictures.sort(function (a, b) {
@@ -51,13 +51,13 @@ const setPictureFilter = (pictures) => {
     clearPictures();
     renderUsersPictures(sortByCommentsPictures);
     clearActiveFilter();
-    getFilterDiscussed.classList.add(FILTER_BUTTON_ACTIVE);
+    filterDiscussed.classList.add(FILTER_BUTTON_ACTIVE);
   };
 
   const filterTypeAction = {
-    'filter-default': defaultFilter,
-    'filter-random': randomFilter,
-    'filter-discussed': discussedFilter,
+    'filter-default': getDefaultFilter,
+    'filter-random': getRandomFilter,
+    'filter-discussed': getDiscussedFilter,
   };
 
   const onFilterFormClick = (evt) => {
